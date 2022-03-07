@@ -1,8 +1,16 @@
 import Array "mo:base/Array";
+import Iter "mo:base/Iter";
 import Buffer "mo:base/Buffer";
+import Blob "mo:base/Blob";
 import Nat "mo:base/Nat";
+import Nat8 "mo:base/Nat8";
+import Text "mo:base/Text";
+import Char "mo:base/Char";
+import Prim "mo:⛔";
 
 actor {
+
+  //Day 1
   public func add(n : Nat, m : Nat) : async Nat {
     return n+m;
   };
@@ -63,4 +71,77 @@ actor {
   public func selection_sort(array : [Nat]) : async [Nat] {
     return Array.sort(array, Nat.compare);
   };
+
+
+  //Day 2
+  public func nat_to_nat8(n : Nat) : async Nat8 {
+    if (n < 256) {
+      return Nat8.fromNat(n);
+    };
+    return 0;
+  };
+
+  public func max_number_with_n_bits(n : Nat) : async Nat {
+    return n*255;
+  };
+
+  public func decimal_to_bits(n : Nat) : async Text {
+    var q : Nat8 = Nat8.fromNat(n);
+    var t : Text = "";
+    if (n < 256) {
+      while (q >= 1) {
+        t := Text.concat(t, Nat8.toText(q%2));
+        q := q/2;
+      };
+      return t;
+    };
+    return "Number must contain max a byte (8 bits) that is 255.";
+  };
+
+  public func capitalize_character(c : Char) : async Char {
+    return Char.fromNat32(Char.toNat32(c) - 32);
+  };
+
+  public func capitalize_text(c : Text) : async Text {
+    var arr : [Char] = Iter.toArray(Text.toIter(c));
+    var t : Text = "";
+    for(a in arr.vals()) {
+      t := Text.concat(t, Text.fromChar(Char.fromNat32(Char.toNat32(a) - 32)));
+    };
+    return t;
+  };
+
+  public func is_inside(t : Text, c : Char) : async Bool {
+    //Or just use Text.contains.
+    var arr : [Char] = Iter.toArray(Text.toIter(t));
+    for(a in arr.vals()) {
+      if(a == c) {
+        return true;
+      };
+    };
+    return false;
+  };
+
+  public func trim_whitespace(t : Text) : async Text {
+    return Text.trim(t, #text(" "));
+  };
+
+  public func duplicated_character(t : Text) : async Text {
+    var arr : [Char] = Iter.toArray(Text.toIter(t));
+    var te : Text = t;
+    var size : Nat = t.size();
+    for(a in arr.vals()) {
+      te := Text.trim(te, #char(a));
+      if(te.size()+2 == size) {
+        return Text.fromChar(a);
+      };
+      size := te.size();
+    };
+    return t;
+  };
+  
+  public func size_in_bytes(t : Text) : async [Nat8] {
+    return Blob.toArray(Text.encodeUtf8(t));
+  };
+
 };
