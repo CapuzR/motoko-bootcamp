@@ -1,23 +1,13 @@
+type Specie = text;
+type ForFun = record {name: text;};
+type Energy = nat;
+type Animal = 
+ record {
+   energy: nat;
+   specie: text;
+ };
 service : {
-  add: (nat, nat) -> (nat);
-  capitalize_character: (nat32) -> (nat32);
-  capitalize_text: (text) -> (text);
-  clear_counter: () -> ();
-  days_to_second: (nat) -> (nat);
-  decimal_to_bits: (nat) -> (text);
-  divide: (nat, nat) -> (bool);
-  duplicated_character: (text) -> (text);
-  get_counter: () -> (nat);
-  increment_counter: (nat) -> (nat);
-  is_even: (nat) -> (bool);
-  is_inside: (text, nat32) -> (bool);
-  max_number_with_n_bits: (nat) -> (nat);
-  maximum: (vec nat) -> (nat);
-  nat_to_nat8: (nat) -> (nat8);
-  remove_from_array: (vec nat, nat) -> (vec nat);
-  selection_sort: (vec nat) -> (vec nat);
-  size_in_bytes: (text) -> (vec nat8);
-  square: (nat) -> (nat);
-  sum_of_array: (vec nat) -> (nat);
-  trim_whitespace: (text) -> (text);
+  create_animal_then_takes_a_break: (Specie, Energy) -> (Animal);
+  fun: () -> (ForFun);
+  push_animal: (Animal) -> () oneway;
 }

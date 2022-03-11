@@ -144,4 +144,96 @@ actor {
     return Blob.toArray(Text.encodeUtf8(t));
   };
 
+  private func swap( array : [var Text], i: Nat, j: Nat) : [ var Text ] {
+    let temp = array[i];
+    array[i] := array[j];
+    array[j] := temp;
+
+    return array;
+  };
+
+  public func init_count( n : Nat) : async [ Nat ] {
+    var buff : Buffer.Buffer<Nat> = Buffer.Buffer(n);
+    var i : Nat = 0;
+    while(i < n) {
+      buff.add(i);
+      i += 1;
+    };
+
+    return buff.toArray();
+  };
+
+  public func seven( array : [Nat]) : async Text {
+    for(a in array.vals()) {
+      for(b in Iter.toArray(Text.toIter(Nat.toText(a))).vals()) {
+        if (Text.equal(Char.toText(b), "7")) {
+          return "Seven is found";
+        };
+      };
+    };
+    return "Seven not found";
+  };
+
+  public func nat_opt_to_nat( n : ?Nat, m: Nat) : async Nat {
+    switch (n) {
+      case (null) { return m };
+      case (?a) { return a };
+    };
+  };
+
+  public func day_of_the_week( n : Nat) : async ?Text {
+    switch (n) {
+      case (1) { return ?"Monday" };
+      case (2) { return ?"Tuesday" };
+      case (3) { return ?"Wednesday" };
+      case (4) { return ?"Thursday" };
+      case (5) { return ?"Friday" };
+      case (6) { return ?"Saturday" };
+      case (7) { return ?"Sunday" };
+      case (_) { return null };
+    };
+  };
+
+  let f = func (a: ?Nat) : Nat {
+    switch(a) {
+      case (null) {return 0};
+     case (?a) {return a};
+    };
+  };
+  
+  public func populate_array( array : [?Nat] ) : async [Nat] {
+    return Array.map(array, f);
+  };
+
+  public func sum_of_array1( array : [Nat] ) : async Nat {
+    var temp : Nat = 0;
+    let arr = Array.map<Nat, Nat>(array, 
+      func (a: Nat) : Nat {
+        temp += a;
+        return a;
+      }
+    );
+    return temp;
+  };
+
+  public func squared_array( array : [Nat] ) : async [Nat] {
+    Array.map<Nat, Nat>(array, 
+      func (a: Nat) : Nat {
+        return a*2;
+      }
+    );
+  };
+
+  public func increase_by_index( array : [Nat] ) : async [Nat] {
+    var i : Nat = 0;
+    Array.map<Nat, Nat>(array, 
+      func (a: Nat) : Nat {
+        let new = a + i;
+        i += 1;
+        return new;
+      }
+    );
+  };
+
+  
 };
