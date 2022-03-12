@@ -10,6 +10,7 @@ import Char "mo:base/Char";
 import Principal "mo:base/Principal";
 import HashMap "mo:base/HashMap";
 import Prim "mo:⛔";
+import Result "mo:base/Result";
 
 actor {
     
