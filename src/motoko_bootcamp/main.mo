@@ -3,14 +3,16 @@ import Iter "mo:base/Iter";
 import Buffer "mo:base/Buffer";
 import Blob "mo:base/Blob";
 import Nat "mo:base/Nat";
+import Cycles "mo:base/ExperimentalCycles";
 import Nat8 "mo:base/Nat8";
 import Text "mo:base/Text";
 import Char "mo:base/Char";
+import Principal "mo:base/Principal";
+import HashMap "mo:base/HashMap";
 import Prim "mo:⛔";
 
 actor {
 
-  //Day 1
   public func add(n : Nat, m : Nat) : async Nat {
     return n+m;
   };
@@ -72,8 +74,6 @@ actor {
     return Array.sort(array, Nat.compare);
   };
 
-
-  //Day 2
   public func nat_to_nat8(n : Nat) : async Nat8 {
     if (n < 256) {
       return Nat8.fromNat(n);
@@ -235,5 +235,49 @@ actor {
     );
   };
 
+  public shared({caller}) func is_anonymous () : async Bool {
+      let textCallerId : Text = Principal.toText(caller);
+
+      if(textCallerId == "2vxsx-fae") {
+          return false;
+      } else {
+        return true;
+      };
+  };
+
+  var favouriteNumber = HashMap.HashMap<Principal, Nat>(0, Principal.equal, Principal.hash);
+
+  public shared({caller}) func add_favorite_number (n : Nat) {
+    favouriteNumber.put(caller, n);
+  };
   
+  public shared({caller}) func show_favorite_number () : async ?Nat {
+    favouriteNumber.get(caller);
+  };
+
+  public shared({caller}) func add_favorite_number_1 (n : Nat): async Text {
+    switch(favouriteNumber.get(caller)) {
+      case (null) { favouriteNumber.put(caller, n); return "You've successfully registered your number" };
+      case (_) { return "You've already registered your number" };
+    };
+  };
+
+  public shared({caller}) func update_favorite_number (n : Nat) {
+    favouriteNumber.put(caller, n);
+  };
+
+  public shared({caller}) func delete_favorite_number (n : Nat) {
+    favouriteNumber.delete(caller);
+  };
+
+  public shared({caller}) func deposit_cycles () : async Nat {
+    Cycles.available();
+  };
+
+  stable var counter1 : Nat = 0;
+
+  public func count() : async Nat {
+    counter1 += 1;
+    return counter1;
+  };
 };

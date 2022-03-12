@@ -1,7 +1,7 @@
 {
   "canisters": {
     "motoko_bootcamp": {
-      "main": "src/motoko_bootcamp/c4/main.mo",
+      "main": "src/motoko_bootcamp/HashMapUp.mo",
       "type": "motoko"
     },
     "motoko_bootcamp_assets": {

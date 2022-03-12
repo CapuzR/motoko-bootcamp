@@ -1,13 +1,42 @@
 import type { Principal } from '@dfinity/principal';
-export interface Animal { 'specie' : string, 'energy' : bigint }
-export type Energy = bigint;
-export interface ForFun { 'name' : string }
-export type Specie = string;
 export interface _SERVICE {
-  'create_animal_then_takes_a_break' : (
-      arg_0: Specie,
-      arg_1: Energy,
-    ) => Promise<Animal>,
-  'fun' : () => Promise<ForFun>,
-  'push_animal' : (arg_0: Animal) => Promise<undefined>,
+  'add' : (arg_0: bigint, arg_1: bigint) => Promise<bigint>,
+  'add_favorite_number' : (arg_0: bigint) => Promise<undefined>,
+  'add_favorite_number_1' : (arg_0: bigint) => Promise<string>,
+  'capitalize_character' : (arg_0: number) => Promise<number>,
+  'capitalize_text' : (arg_0: string) => Promise<string>,
+  'clear_counter' : () => Promise<undefined>,
+  'count' : () => Promise<bigint>,
+  'day_of_the_week' : (arg_0: bigint) => Promise<[] | [string]>,
+  'days_to_second' : (arg_0: bigint) => Promise<bigint>,
+  'decimal_to_bits' : (arg_0: bigint) => Promise<string>,
+  'delete_favorite_number' : (arg_0: bigint) => Promise<undefined>,
+  'deposit_cycles' : () => Promise<bigint>,
+  'divide' : (arg_0: bigint, arg_1: bigint) => Promise<boolean>,
+  'duplicated_character' : (arg_0: string) => Promise<string>,
+  'get_counter' : () => Promise<bigint>,
+  'increase_by_index' : (arg_0: Array<bigint>) => Promise<Array<bigint>>,
+  'increment_counter' : (arg_0: bigint) => Promise<bigint>,
+  'init_count' : (arg_0: bigint) => Promise<Array<bigint>>,
+  'is_anonymous' : () => Promise<boolean>,
+  'is_even' : (arg_0: bigint) => Promise<boolean>,
+  'is_inside' : (arg_0: string, arg_1: number) => Promise<boolean>,
+  'max_number_with_n_bits' : (arg_0: bigint) => Promise<bigint>,
+  'maximum' : (arg_0: Array<bigint>) => Promise<bigint>,
+  'nat_opt_to_nat' : (arg_0: [] | [bigint], arg_1: bigint) => Promise<bigint>,
+  'nat_to_nat8' : (arg_0: bigint) => Promise<number>,
+  'populate_array' : (arg_0: Array<[] | [bigint]>) => Promise<Array<bigint>>,
+  'remove_from_array' : (arg_0: Array<bigint>, arg_1: bigint) => Promise<
+      Array<bigint>
+    >,
+  'selection_sort' : (arg_0: Array<bigint>) => Promise<Array<bigint>>,
+  'seven' : (arg_0: Array<bigint>) => Promise<string>,
+  'show_favorite_number' : () => Promise<[] | [bigint]>,
+  'size_in_bytes' : (arg_0: string) => Promise<Array<number>>,
+  'square' : (arg_0: bigint) => Promise<bigint>,
+  'squared_array' : (arg_0: Array<bigint>) => Promise<Array<bigint>>,
+  'sum_of_array' : (arg_0: Array<bigint>) => Promise<bigint>,
+  'sum_of_array1' : (arg_0: Array<bigint>) => Promise<bigint>,
+  'trim_whitespace' : (arg_0: string) => Promise<string>,
+  'update_favorite_number' : (arg_0: bigint) => Promise<undefined>,
 }

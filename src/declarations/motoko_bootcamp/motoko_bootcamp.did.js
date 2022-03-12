@@ -1,16 +1,50 @@
 export const idlFactory = ({ IDL }) => {
-  const Specie = IDL.Text;
-  const Energy = IDL.Nat;
-  const Animal = IDL.Record({ 'specie' : IDL.Text, 'energy' : IDL.Nat });
-  const ForFun = IDL.Record({ 'name' : IDL.Text });
   return IDL.Service({
-    'create_animal_then_takes_a_break' : IDL.Func(
-        [Specie, Energy],
-        [Animal],
+    'add' : IDL.Func([IDL.Nat, IDL.Nat], [IDL.Nat], []),
+    'add_favorite_number' : IDL.Func([IDL.Nat], [], ['oneway']),
+    'add_favorite_number_1' : IDL.Func([IDL.Nat], [IDL.Text], []),
+    'capitalize_character' : IDL.Func([IDL.Nat32], [IDL.Nat32], []),
+    'capitalize_text' : IDL.Func([IDL.Text], [IDL.Text], []),
+    'clear_counter' : IDL.Func([], [], []),
+    'count' : IDL.Func([], [IDL.Nat], []),
+    'day_of_the_week' : IDL.Func([IDL.Nat], [IDL.Opt(IDL.Text)], []),
+    'days_to_second' : IDL.Func([IDL.Nat], [IDL.Nat], []),
+    'decimal_to_bits' : IDL.Func([IDL.Nat], [IDL.Text], []),
+    'delete_favorite_number' : IDL.Func([IDL.Nat], [], ['oneway']),
+    'deposit_cycles' : IDL.Func([], [IDL.Nat], []),
+    'divide' : IDL.Func([IDL.Nat, IDL.Nat], [IDL.Bool], []),
+    'duplicated_character' : IDL.Func([IDL.Text], [IDL.Text], []),
+    'get_counter' : IDL.Func([], [IDL.Nat], []),
+    'increase_by_index' : IDL.Func([IDL.Vec(IDL.Nat)], [IDL.Vec(IDL.Nat)], []),
+    'increment_counter' : IDL.Func([IDL.Nat], [IDL.Nat], []),
+    'init_count' : IDL.Func([IDL.Nat], [IDL.Vec(IDL.Nat)], []),
+    'is_anonymous' : IDL.Func([], [IDL.Bool], []),
+    'is_even' : IDL.Func([IDL.Nat], [IDL.Bool], []),
+    'is_inside' : IDL.Func([IDL.Text, IDL.Nat32], [IDL.Bool], []),
+    'max_number_with_n_bits' : IDL.Func([IDL.Nat], [IDL.Nat], []),
+    'maximum' : IDL.Func([IDL.Vec(IDL.Nat)], [IDL.Nat], []),
+    'nat_opt_to_nat' : IDL.Func([IDL.Opt(IDL.Nat), IDL.Nat], [IDL.Nat], []),
+    'nat_to_nat8' : IDL.Func([IDL.Nat], [IDL.Nat8], []),
+    'populate_array' : IDL.Func(
+        [IDL.Vec(IDL.Opt(IDL.Nat))],
+        [IDL.Vec(IDL.Nat)],
         [],
       ),
-    'fun' : IDL.Func([], [ForFun], []),
-    'push_animal' : IDL.Func([Animal], [], ['oneway']),
+    'remove_from_array' : IDL.Func(
+        [IDL.Vec(IDL.Nat), IDL.Nat],
+        [IDL.Vec(IDL.Nat)],
+        [],
+      ),
+    'selection_sort' : IDL.Func([IDL.Vec(IDL.Nat)], [IDL.Vec(IDL.Nat)], []),
+    'seven' : IDL.Func([IDL.Vec(IDL.Nat)], [IDL.Text], []),
+    'show_favorite_number' : IDL.Func([], [IDL.Opt(IDL.Nat)], []),
+    'size_in_bytes' : IDL.Func([IDL.Text], [IDL.Vec(IDL.Nat8)], []),
+    'square' : IDL.Func([IDL.Nat], [IDL.Nat], []),
+    'squared_array' : IDL.Func([IDL.Vec(IDL.Nat)], [IDL.Vec(IDL.Nat)], []),
+    'sum_of_array' : IDL.Func([IDL.Vec(IDL.Nat)], [IDL.Nat], []),
+    'sum_of_array1' : IDL.Func([IDL.Vec(IDL.Nat)], [IDL.Nat], []),
+    'trim_whitespace' : IDL.Func([IDL.Text], [IDL.Text], []),
+    'update_favorite_number' : IDL.Func([IDL.Nat], [], ['oneway']),
   });
 };
 export const init = ({ IDL }) => { return []; };

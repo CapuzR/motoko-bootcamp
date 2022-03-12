@@ -1,13 +1,39 @@
-type Specie = text;
-type ForFun = record {name: text;};
-type Energy = nat;
-type Animal = 
- record {
-   energy: nat;
-   specie: text;
- };
 service : {
-  create_animal_then_takes_a_break: (Specie, Energy) -> (Animal);
-  fun: () -> (ForFun);
-  push_animal: (Animal) -> () oneway;
+  add: (nat, nat) -> (nat);
+  add_favorite_number: (nat) -> () oneway;
+  add_favorite_number_1: (nat) -> (text);
+  capitalize_character: (nat32) -> (nat32);
+  capitalize_text: (text) -> (text);
+  clear_counter: () -> ();
+  count: () -> (nat);
+  day_of_the_week: (nat) -> (opt text);
+  days_to_second: (nat) -> (nat);
+  decimal_to_bits: (nat) -> (text);
+  delete_favorite_number: (nat) -> () oneway;
+  deposit_cycles: () -> (nat);
+  divide: (nat, nat) -> (bool);
+  duplicated_character: (text) -> (text);
+  get_counter: () -> (nat);
+  increase_by_index: (vec nat) -> (vec nat);
+  increment_counter: (nat) -> (nat);
+  init_count: (nat) -> (vec nat);
+  is_anonymous: () -> (bool);
+  is_even: (nat) -> (bool);
+  is_inside: (text, nat32) -> (bool);
+  max_number_with_n_bits: (nat) -> (nat);
+  maximum: (vec nat) -> (nat);
+  nat_opt_to_nat: (opt nat, nat) -> (nat);
+  nat_to_nat8: (nat) -> (nat8);
+  populate_array: (vec opt nat) -> (vec nat);
+  remove_from_array: (vec nat, nat) -> (vec nat);
+  selection_sort: (vec nat) -> (vec nat);
+  seven: (vec nat) -> (text);
+  show_favorite_number: () -> (opt nat);
+  size_in_bytes: (text) -> (vec nat8);
+  square: (nat) -> (nat);
+  squared_array: (vec nat) -> (vec nat);
+  sum_of_array: (vec nat) -> (nat);
+  sum_of_array1: (vec nat) -> (nat);
+  trim_whitespace: (text) -> (text);
+  update_favorite_number: (nat) -> () oneway;
 }
